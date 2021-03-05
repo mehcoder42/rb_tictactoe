@@ -1,43 +1,53 @@
 class Board
 
-    attr_accessor :inde
+    attr_accessor :board
 
     def initialize 
-        @index_number = [1,2,3,4,5,6,7,8,9]
+        @board = [1,2,3,4,5,6,7,8,9]
     end
 
-    def make_board
-        puts %(
-             #{@index_number[0]} | #{@index_number[1]} | #{@index_number[2]}
-            ---+---+---
-             #{@index_number[3]} | #{@index_number[4]} | #{@index_number[5]}
-            ---+---+---
-             #{@index_number[6]} | #{@index_number[7]} | #{@index_number[8]}
-        )
+    def display_board
+        puts
+        puts "#{@board[0]} | #{@board[1]} | #{@board[2]}"
+        puts "---------"
+        puts "#{@board[3]} | #{@board[4]} | #{@board[5]}"
+        puts "---------"
+        puts "#{@board[6]} | #{@board[7]} | #{@board[8]}"
+        puts
     end
 
-    def update_board
-        puts %(
-            #{@index_number[0]} | #{@index_number[1]} | #{@index_number[2]}
-           ---+---+---
-            #{@index_number[3]} | #{@index_number[4]} | #{@index_number[5]}
-           ---+---+---
-            #{@index_number[6]} | #{@index_number[7]} | #{@index_number[8]}
-       )
+    def player_one_play 
+        while true
+            puts "Pick a number from 1 to 9."
+            @user_number = gets.chomp 
+            break if ["1","2","3","4","5","6","7","8","9"].include?@user_number
+            puts
+            puts "Error! Next, try to pick a number from 1 to 9."
+            puts
+        end
+        @board[@user_number.to_i-1] = "X"
+        display_board 
     end
+
+    def player_two_play
+        while true
+            puts "Pick a number from 1 to 9."
+            @user_number = gets.chomp 
+            break if ["1","2","3","4","5","6","7","8","9"].include?@user_number
+            puts
+            puts "Error! Next, try to pick a number from 1 to 9."
+            puts
+        end
+        @board[@user_number.to_i-1] = "O"
+        display_board 
+    end
+
 end
 
 board = Board.new
-board.make_board
-
-puts "Pick a number"
-user_number = gets.chomp
-if user_number == 1
-    @index_number[0] = "X"
-end
-
-board.update_board
-puts @index_number
+board.display_board 
+board.player_one_play
+board.player_two_play
 
 
 winning_combination = [[1,5,9],[1,4,7],[1,2,3],[2,5,8],[3,5,7],[3,6,9],[7,8,9]]
