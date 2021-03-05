@@ -18,36 +18,39 @@ class Board
 
     def player_one_play 
         while true
-            puts "Pick a number from 1 to 9."
+            puts "Player one, please pick a number from 1 to 9 that are available."
             @user_number = gets.chomp 
-            break if ["1","2","3","4","5","6","7","8","9"].include?@user_number
+            break if @board[@user_number.to_i-1] == @user_number.to_i
             puts
-            puts "Error! Next, try to pick a number from 1 to 9."
+            puts "Please pick number from 1 to 9 that are still available."
             puts
         end
         @board[@user_number.to_i-1] = "X"
+
         display_board 
     end
 
     def player_two_play
         while true
-            puts "Pick a number from 1 to 9."
+            puts "Player two, please pick a number from 1 to 9 that are available."
             @user_number = gets.chomp 
-            break if ["1","2","3","4","5","6","7","8","9"].include?@user_number
-            puts
-            puts "Error! Next, try to pick a number from 1 to 9."
-            puts
+            break if @board[@user_number.to_i-1] == @user_number.to_i
         end
         @board[@user_number.to_i-1] = "O"
+        
         display_board 
     end
 
 end
 
 board = Board.new
-board.display_board 
+board.display_board
 board.player_one_play
 board.player_two_play
 
-
-winning_combination = [[1,5,9],[1,4,7],[1,2,3],[2,5,8],[3,5,7],[3,6,9],[7,8,9]]
+#game_over = false
+#while game_over != true
+#    board.player_one_play
+#    board.player_two_play
+#end
+#winning_combination = [[1,5,9],[1,4,7],[1,2,3],[2,5,8],[3,5,7],[3,6,9],[7,8,9]]
