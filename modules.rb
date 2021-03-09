@@ -1,12 +1,4 @@
-class Player
-
-    attr_accessor :player_play
-
-    def initialize(name,symbol)
-        @name = name
-        @symbol = symbol
-    end
-
+module Players
     def player_one_play
         while true
             puts "player one, please pick a number from 1 to 9 that are available."
@@ -28,5 +20,4 @@ class Player
 
         display_board 
     end
-
 end
